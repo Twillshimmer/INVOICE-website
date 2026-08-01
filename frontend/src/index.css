@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: #12203D;
+}
+
+/* Ledger "stamp" — the signature visual element on the invoice preview */
+.stamp {
+  transform: rotate(-8deg);
+  border: 2.5px solid currentColor;
+  border-radius: 6px;
+  letter-spacing: 0.14em;
+}
+
+/* Numeric / ledger data columns use the mono face for tabular alignment */
+.tabular {
+  font-family: "IBM Plex Mono", monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hide scrollbars on the tab strip without losing scroll functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Used only while html2canvas renders the invoice for PDF export */
+.pdf-render-mode {
+  width: 794px !important; /* A4 @ 96dpi */
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #invoice-print-area,
+  #invoice-print-area * {
+    visibility: visible;
+  }
+  #invoice-print-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}
